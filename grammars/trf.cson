@@ -1,0 +1,62 @@
+# If this is your first time writing a language grammar, check out:
+#   - https://flight-manual.atom.io/hacking-atom/sections/creating-a-grammar/
+
+scopeName: 'source.trf'
+name: 'TRF'
+
+fileTypes: ['trf']
+
+patterns: [
+    { include: '#lineComment' }
+    { include: '#section' }
+    { include: '#instruction' }
+]
+
+repository:
+    lineComment: {
+        comment: 'Comments starting with //'
+        name: 'comment.line.trf'
+        match: '//.*$'
+    }
+    section: {
+        comment: 'Matches init and layer sections'
+        match: '(init|layer)(?:\\[(.*)\\])*$'
+        name: 'meta.section.trf'
+        captures:
+            1: name: 'entity.name.tag.trf'
+            2: patterns: [
+                { include: '#constants' }
+            ]
+    }
+    instruction: {
+        comment: 'Matches instructions'
+        match: '(?:([\\w-]+)(:)([@\\w\\d,./_\\+\\-~%\\*]+))(\\|)'
+        name: 'meta.instruction.trf'
+        captures:
+            1: name: 'entity.name.function.trf'
+            2: name: 'keyword.control.trf'
+            4: name: 'keyword.control.trf'
+            3: {
+                patterns: [
+                    { include: '#constants' }
+                    { include: '#omesVars' }
+                    { include: '#paths' }
+                ]
+            }
+    }
+    constants: {
+        comment: 'Matches integer numbers'
+        match: '(?:\\W)(\\d+)'
+        captures:
+            1: name: 'constant.numeric.trf'
+    }
+    omesVars: {
+        comment: 'Matches constants of the form VAR-NAME'
+        match: '[A-Z]+-[A-Z-]+[A-Z]'
+        name: 'support.constant.trf'
+    }
+    paths: {
+        comment: 'Matches paths to files'
+        match: '[\\w\\d]+\\.[\\w\\d\\.]+'
+        name: 'string.unquoted.trf'
+    }

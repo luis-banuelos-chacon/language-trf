@@ -1,0 +1,14 @@
+{
+  "name": "language-trf",
+  "version": "0.0.0",
+  "description": "TRF language support for Atom",
+  "keywords": [
+    "language",
+    "grammar"
+  ],
+  "repository": "https://github.azc.ext.hp.com/luis-banuelos-chacon/language-trf",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  }
+}
