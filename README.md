@@ -1,3 +1,3 @@
-# PackageName language package
+# language-trf
 
-A short description of your language package.
+A TRF grammar for Atom.
