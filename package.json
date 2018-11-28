@@ -6,13 +6,7 @@
         "language",
         "grammar"
     ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/luis-banuelos-chacon/language-trf.git"
-    },
-    "bugs": {
-        "url": "https://github.com/luis-banuelos-chacon/language-trf/issues"
-    },
+    "repository": "https://github.com/luis-banuelos-chacon/language-trf",
     "license": "MIT",
     "engines": {
         "atom": ">=1.0.0 <2.0.0"
