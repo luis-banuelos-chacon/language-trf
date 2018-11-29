@@ -38,25 +38,35 @@ repository:
             4: name: 'keyword.control.trf'
             3: {
                 patterns: [
-                    { include: '#constants' }
-                    { include: '#omesVars' }
-                    { include: '#paths' }
+                    { include: '#argument' }
                 ]
             }
     }
-    constants: {
-        comment: 'Matches integer numbers'
-        match: '(?:\\W)(\\d+)'
+    argument: {
+        comment: 'Matches arguments'
+        match: '(.+?)(?:,|$)'
+        name: 'meta.argument.trf'
         captures:
-            1: name: 'constant.numeric.trf'
+            1: {
+                patterns: [
+                    { include: '#constant' }
+                    { include: '#omesVar' }
+                    { include: '#path' }
+                ]
+            }
     }
-    omesVars: {
+    constant: {
+        comment: 'Matches integer numbers'
+        match: '^\\d+$'
+        name: 'constant.numeric.trf'
+    }
+    omesVar: {
         comment: 'Matches constants of the form VAR-NAME'
-        match: '[A-Z]+-[A-Z-]+[A-Z]'
+        match: '^[A-Z]+-[A-Z-]+[A-Z]$'
         name: 'support.constant.trf'
     }
-    paths: {
+    path: {
         comment: 'Matches paths to files'
-        match: '[\\w\\d]+\\.[\\w\\d\\.]+'
+        match: '^[/\\.\\w\\d_-]+\\.[A-Za-z0-9]+$'
         name: 'string.unquoted.trf'
     }
