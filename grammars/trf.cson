@@ -7,13 +7,13 @@ name: 'TRF'
 fileTypes: ['trf']
 
 patterns: [
-    { include: '#lineComment' }
+    { include: '#comment' }
     { include: '#section' }
     { include: '#instruction' }
 ]
 
 repository:
-    lineComment: {
+    comment: {
         comment: 'Comments starting with //'
         name: 'comment.line.trf'
         match: '//.*$'
@@ -30,7 +30,7 @@ repository:
     }
     instruction: {
         comment: 'Matches instructions'
-        match: '(?:([\\w-]+)(:)([@\\w\\d,./_\\+\\-~%\\*]+))(\\|)'
+        match: '(?:([\\w-]+)(:)([@\\w\\d,./_\\+\\-~%\\*]+))([\\|\\s])'
         name: 'meta.instruction.trf'
         captures:
             1: name: 'entity.name.function.trf'
@@ -67,6 +67,6 @@ repository:
     }
     path: {
         comment: 'Matches paths to files'
-        match: '^[/\\.\\w\\d_-]+\\.[A-Za-z0-9]+$'
+        match: '^[@/\\.\\w\\d_-]+\\.[A-Za-z0-9]+$'
         name: 'string.unquoted.trf'
     }
