@@ -62,7 +62,7 @@ repository:
     }
     omesVar: {
         comment: 'Matches constants of the form VAR-NAME'
-        match: '^[A-Z]+-[A-Z-]+[A-Z]$'
+        match: '^[A-Z0-9]+-[A-Z0-9-]+[A-Z0-9]$'
         name: 'support.constant.trf'
     }
     path: {
